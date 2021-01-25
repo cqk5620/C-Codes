@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+void func(vector<int> a,int n, int x);
+int main()
+{
+    vector<int> a={1,2,3};
+    int n=a.size();
+    int sum=5;
+    func(a,n,sum);
+    return 0;
+}
+void func(vector<int> a,int n, int x)
+{
+    int T[n][x+1];
+    int i,j;
+    for(i=0;i<n;i++)
+    for(j=0;j<=x;j++)
+    if(i==0 || j==0)
+    T[i][j]=1;
+    else T[i][j]=0;
+    
+    for(i=1;i<n;i++)
+    {
+        for(j=1;j<=x;j++)
+        {
+            if(j>=a[i])
+            T[i][j]=T[i-1][j]+T[i][j-a[i]];
+            else 
+            T[i][j]=T[i-1][j];
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        cout<<endl;
+        for(j=0;j<=x;j++)
+        {
+            cout<<T[i][j]<<" ";
+        }
+    }
+    cout<<"\nNumber of ways to get Sum with given coins:\t"<<T[n-1][x];
+}
