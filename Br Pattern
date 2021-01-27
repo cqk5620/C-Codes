@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int i,j,k=5,m=5;
+    for(i=1;i<=4;i++)
+    {
+        cout<<endl;
+        for(j=1;j<=9;j++)
+        {
+            if(k<=j && j<=m)
+            {
+                cout<<" ";
+            }
+            else if(j>m)
+            {
+                cout<<"* ";
+            }
+            else
+            cout<<" *";
+        }
+        k--,m++;
+        
+    }
+    return 0;
+}
