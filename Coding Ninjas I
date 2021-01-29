@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+void func(string s,int n,unordered_map<string,int>m,unordered_map<char,int>ma);
+int main() 
+{
+	string s;
+    unordered_map<string,int> m;
+    unordered_map<char,int>ma;
+    cin>>s;
+    int n=s.length(),i,j=0;
+    for(i=0;i<n;i+=3)
+    {
+        string x=s.substr(i,j+3);
+        m[x]++;
+    }
+    for(auto x:m)
+    {
+        char f=(x.first)[0];
+        ma[f]++;
+    }
+    func(s,n,m,ma);
+	return 0;
+}
+void func(string s,int n,unordered_map<string,int>m,unordered_map<char,int>ma)
+{
+    int c=13;
+    for(auto x:m)
+    {
+        if(x.second >1)
+        {
+            cout<<"ERROR";
+            return;
+		}
+        else
+        {
+           for(auto r:ma)
+           {
+               while(r.second >0)
+               if(r.second == 1)
+            	cout<<c-r.second;
+               else
+               {
+                   cout<<c-r.second;
+                   r.second--;
+               }
+           }
+        }
+    }
+}
