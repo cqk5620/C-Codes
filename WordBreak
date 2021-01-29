@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool func(string s,int n,unordered_set<string> se);
+int main()
+{
+    int i=1;
+    vector<string>dict={"i","like","java","c++"};
+    unordered_set<string> se(dict.begin(),dict.end());
+    int dsize=dict.size();
+    string s="ilikejava";
+    int n=s.length();
+    if(func(s,n,se))
+    cout<<"Exist";
+    else cout<<"\nDoes not exist";
+    return 0;
+}
+bool func(string s,int n,unordered_set<string> se)
+{
+    bool T[n+1];
+    int i;
+    for(i=0;i<=n;i++)
+    T[i]=false;
+    for(i=1;i<=n;i++)
+    {
+        if(!T[i] && se.find(s.substr(0,i))!=se.end())
+        T[i]=true;
+        if(T[i])
+        {
+           if(i==n)
+           return true;
+            int j;
+            for(j=i+1;j<=n;j++)
+            {
+                string x=s.substr(i,j-i);
+                if(se.find(x)!=se.end() && !T[j])
+                T[j]=true;
+            }
+        }
+    }
+   return T[n];
+    
+}
