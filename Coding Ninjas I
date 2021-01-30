@@ -1,49 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
-void func(string s,int n,unordered_map<string,int>m,unordered_map<char,int>ma);
+bool func(string s,int n,unordered_map<string,int>m);
 int main() 
 {
-	string s;
+	string s="P03K04H02H03";
     unordered_map<string,int> m;
     unordered_map<char,int>ma;
-    cin>>s;
+   // cin>>s;
     int n=s.length(),i,j=0;
     for(i=0;i<n;i+=3)
     {
         string x=s.substr(i,j+3);
         m[x]++;
     }
-    for(auto x:m)
+    if(func(s,n,m))
     {
-        char f=(x.first)[0];
-        ma[f]++;
+        cout<<"ERROR";
     }
-    func(s,n,m,ma);
+    else
+    {
+        for(auto x:m)
+        {
+            char f=(x.first)[0];
+            ma[f]++;
+        }
+        for(auto r: ma)
+        {
+            while(r.second !=0)
+            {
+            	cout<<13-r.second<<" ";
+                r.second--;
+            }
+              
+        }
+        
+    }
+    
 	return 0;
 }
-void func(string s,int n,unordered_map<string,int>m,unordered_map<char,int>ma)
+bool func(string s,int n,unordered_map<string,int>m)
 {
-    int c=13;
     for(auto x:m)
     {
         if(x.second >1)
         {
-            cout<<"ERROR";
-            return;
+            return 1;
 		}
-        else
-        {
-           for(auto r:ma)
-           {
-               while(r.second >0)
-               if(r.second == 1)
-            	cout<<c-r.second;
-               else
-               {
-                   cout<<c-r.second;
-                   r.second--;
-               }
-           }
-        }
     }
+    return 0;
 }
