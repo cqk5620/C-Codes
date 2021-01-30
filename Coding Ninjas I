@@ -8,10 +8,13 @@ int main()
     unordered_map<char,int>ma;
    // cin>>s;
     int n=s.length(),i,j=0;
+    vector<char>ch;
     for(i=0;i<n;i+=3)
     {
         string x=s.substr(i,j+3);
         m[x]++;
+        char y=x[0];
+        ch.push_back(y);
     }
     if(func(s,n,m))
     {
@@ -24,16 +27,14 @@ int main()
             char f=(x.first)[0];
             ma[f]++;
         }
-        for(auto r: ma)
+        for(i=0;i<ch.size();i++)
         {
-            while(r.second !=0)
+            while(ma[ch[i]] !=0)
             {
-            	cout<<13-r.second<<" ";
-                r.second--;
+                cout<<13-ma[ch[i]]<<" ";
+                ma[ch[i]]--;
             }
-              
         }
-        
     }
     
 	return 0;
