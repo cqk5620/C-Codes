@@ -1,5 +1,4 @@
-//Not completed
-//Children sum property using Queues
+//Children Sum Iterative
 #include<bits/stdc++.h>
 using namespace std;
 void inorder(struct node * root);
@@ -36,16 +35,22 @@ bool checkChildrenSum(struct node *root)
         if(x->left)
         {
             q.push(x->left);
+            if(!(x->right))
+            f=f & (x->left->data==x->data);
         }
         if(x->right)
         {
             q.push(x->right);
-            if(x->left)
-            if(x->data-x->left->data == x->right->data)
+            if(!(x->left))
+            f=f & (x->right->data==x->data);
+            else
             {
-                f=f & true;
+                if(x->data-x->left->data == x->right->data)
+                {
+                    f=f & true;
+                }
+                else f=false;
             }
-            else f=false;
         }
     }
     return f;
@@ -58,7 +63,7 @@ int main()
     root->left->left=ins(3);
     root->left->right=ins(5);
     root->right->left=ins(2);
-    inorder(root);
+    //inorder(root);
     bool b=checkChildrenSum(root);
     if(b)
     cout<<"Yes";
