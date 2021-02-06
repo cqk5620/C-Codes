@@ -1,0 +1,36 @@
+//Not Verified...
+#include<bits/stdc++.h>
+using namespace std;
+void func(struct petrol a[],int n);
+struct petrol
+{
+    int x,y,index;
+};
+int main()
+{
+    struct petrol a[]={{4,6,0},{6,5,1},{7,3,2},{4,5,3}};
+    int n=4;
+    func(a,n);
+    return 0;
+}
+void func(struct petrol a[],int n)
+{
+    int i,s=0,k;
+    int diff;
+    diff=a[0].x-a[0].y;
+    queue<struct petrol>q;
+    q.push(a[0]);
+    for(i=1;i<n;i++)
+    {
+        struct petrol p=q.front();
+        diff=p.x-p.y;
+        if(diff < 0)
+        {
+            q.pop();
+        }
+        else
+        {
+            q.push(a[i]);
+            k=q.front().index;   
+        }
+    }
