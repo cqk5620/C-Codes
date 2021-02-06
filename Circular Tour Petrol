@@ -25,12 +25,12 @@ void func(struct petrol a[],int n)
         struct petrol p=q.front();
         diff=p.x-p.y;
         if(diff < 0)
-        {
             q.pop();
-        }
         else
         {
             q.push(a[i]);
             k=q.front().index;   
         }
     }
+     cout<<"Point:\t"<<k<<endl;
+}
