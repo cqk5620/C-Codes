@@ -1,0 +1,39 @@
+//Applicable for one cycle in array
+#include<bits/stdc++.h>
+using namespace std;
+void func(unordered_map<int,int>m,vector<bool>vis, int startPoint);
+int c[1];
+int main()
+{
+    vector<bool>vis(4,false);
+    vector<int> a={3,1,0,2};
+    int i;
+    unordered_map<int,int>m;
+    for(i=0;i<4;i++)
+    {
+        m[i]=a[i];
+    }
+      c[0]=0;
+    for(i=0;i<4;i++)
+    {
+        if(a[i]!=i)
+        {
+           
+            func(m,vis,i);
+            //cout<<"Cycle Size:\t"<<c<<endl;
+        }
+    }
+    cout<<"\nCycle Size:\t"<<c[0]<<endl;
+    cout<<"Minimum Number of Swaps required:\t"<<c[0]-1<<endl;
+    return 0;
+}
+void  func(unordered_map<int,int>m,vector<bool>vis, int startPoint)
+{
+    c[0]++;
+    vis[startPoint]=true;
+    cout<<startPoint<<" ";
+    if(!vis[startPoint])
+    {
+        func(m,vis,m[startPoint]);
+    }
+}
