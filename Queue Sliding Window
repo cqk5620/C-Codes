@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int window_size=3;
+    vector<int>a={1,2,3,4,3};
+    int i,n=5;
+    queue<int> q;
+    for(i=0;i<window_size;i++)
+    q.push(a[i]);
+    int ma=INT_MIN;
+    while(!q.empty())
+    {
+        int k=q.front();
+        //cout<<k<<" ";
+        q.pop();
+        ma=max(ma,k);
+    }
+    cout<<ma<<" ";
+    for(i=window_size;i<n;i++)
+    {
+        int k=a[i];
+        q.pop();
+        q.push(k);
+        if(k>ma)
+        {
+            cout<<k<<" ";
+            ma=max(ma,k);
+        }
+        else cout<<ma<<" ";
+    }
+    return 0;
+}
