@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool comp(int a,int b);
+int main()
+{
+    vector<int>a={10,12,20,30,25,40,32,31,35,50,60};
+    int e,n=a.size(),i;
+    int s=is_sorted_until(a.begin(),a.end())-a.begin();
+    for(i=n-1;i>=0;i--)
+    {
+        if(a[i-1]>a[i])
+        {
+            e=i-1;
+            break;    
+        }
+    }
+    int minimum=*min_element(a.begin()+s,a.begin()+e);
+    int maximum=*max_element(a.begin()+s,a.begin()+e);
+    for(i=0;i<s;i++)
+    {
+        if(a[i]>minimum)
+        s=i;
+    }
+    for(i=n-1;i>=e;i--)
+    {
+        if(a[i]<maximum)
+        e=i;
+    }
+    cout<<s<<"==>"<<e<<endl;
+    return 0;
+}
