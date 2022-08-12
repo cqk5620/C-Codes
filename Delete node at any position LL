@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node *ins(int data);
+struct node* deleteNode(struct node ** head,int pos);
+void disp(struct node * head);
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node *ins(int data)
+{
+    struct node *temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=NULL;
+    return temp;
+}
+void disp(struct node * head)
+{
+    if(!head)
+    return;
+    while(head)
+    {
+        cout<<head->data<<"->";
+        head=head->next;
+    }
+}
+struct node* deleteNode(struct node ** head,int pos)
+{
+    struct node *p=*head,*q;
+    int i;
+    if(pos==1)
+    {
+        p=p->next;
+        return p;
+    }
+    for(i=0;i<pos-1 && p;i++)
+    {
+        q=p;
+        p=p->next;
+    }
+    if(p)
+    q->next=p->next;
+    free(p);
+    return *head;
+}
+int main()
+{
+    int pos;
+    struct node *head=ins(1);
+    head->next=ins(2);
+    head->next->next=ins(3);
+    head->next->next->next=ins(4);
+    disp(head);
+    cout<<endl;
+    cout<<"Enter position to be deleted:\t";
+    cin>>pos;
+    head=deleteNode(&head,pos);
+    disp(head);
+    return 0;
+}
