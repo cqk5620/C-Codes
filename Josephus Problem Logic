@@ -1,0 +1,16 @@
+//This will be finished soon.
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int k;
+    cin>>k;
+    int n;
+    cin>>n;
+    func(n,k);
+    return 0;
+}
+void func(int n,int k)
+{
+    //Not yet done.
+}
